@@ -1,0 +1,24 @@
+messaging:
+  channel: JMSService
+  jmsQueues:
+    sample:
+      sendMessage: true
+      destinationQueueName: "sample"
+#  channel: SQSService
+#  sqsQueues:
+#    sample:
+#      prefix: "sample-standard"
+#      queueUrl: "https://sqs.us-east-1.amazonaws.com/536400049181/sample-standard"
+#      dlqArn: "arn:aws:sqs:us-east-1:536400049181:sample-standard_DLQ"
+#      sendMessage: true
+logging:
+  level:
+    org:
+      apache: info
+
+spring:
+  artemis:
+    user: vinay
+    password: Vinay@0604
+    broker-url: tcp://localhost:61616
+    mode: native
