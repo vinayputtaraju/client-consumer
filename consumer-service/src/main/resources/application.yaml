@@ -1,0 +1,11 @@
+
+messaging:
+  channel: SQS
+  sqsQueues:
+    sample:
+      prefix: "sample-standard"
+      dlqArn: "arn:aws:sqs:us-east-1:${AWS_ACCOUNT_ID}:sample-standard_DLQ"
+      queueUrl: "https://sqs.us-east-1.amazonaws.com/${AWS_ACCOUNT_ID}/sample-standard"
+      respondMessage: true
+server:
+  port: 0

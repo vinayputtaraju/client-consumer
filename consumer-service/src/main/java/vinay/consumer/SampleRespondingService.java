@@ -13,14 +13,10 @@ public class SampleRespondingService implements SQSRespondingService {
 
     @Override
     public MessageResponse respondMessage(Message message, MessageBody messageBody) {
-        log.info("message received : {}",messageBody.getRequestBody());
-       /* try {
-            Thread.sleep(3000l);
-        } catch (InterruptedException e) {
-            log.error("error", e);
-        }*/
-        log.info("message responding : {}",messageBody.getRequestBody());
-        return MessageResponse.builder().success(true)
-                .responseBody("Success : " + messageBody.getRequestBody()).build();
+        log.info("message received : {}", messageBody.message());
+        log.info("message responding : {}", messageBody.message());
+        return new MessageResponse(true, new MessageBody(messageBody.operationName(),
+                "Success : " + messageBody.message()
+                , messageBody.correlationId(), messageBody.idempotencyKey()));
     }
 }

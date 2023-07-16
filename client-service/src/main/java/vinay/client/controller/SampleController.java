@@ -17,11 +17,11 @@ public class SampleController {
     MessagingServiceBean messagingService;
 
     @GetMapping("/test/{message}")
-    public String getSqsMessage(@PathVariable("message") String message) throws Exception {
+    public MessageBody getSqsMessage(@PathVariable("message") String message) throws Exception {
         MessageRequest messageRequest = MessageRequest.builder()
                 .channelName("sample")
-                .messageBody(MessageBody.builder().requestBody(message).correlationId(message).build()).build();
-        return messagingService.sendAndReceiveMessage(messageRequest).getResponseBody();
+                .messageBody(new MessageBody("", message, message, message)).build();
+        return messagingService.sendAndReceiveMessage(messageRequest).messageBody();
     }
 
     @ExceptionHandler(Throwable.class)
